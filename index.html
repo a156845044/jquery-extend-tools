@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="layer/skin/layer.css">
+    <script src="jquery-1.11.3.min.js"></script>
+    <script src="layer/layer.js"></script>
+    <script src="httpUtilities.js"></script>
+</head>
+
+<body>
+    <h1>Test</h1>
+    <script>
+        $(function () {
+
+            $.doGet({
+                url: "data.json"
+            }, true).then(function(req){
+                alert(2333);
+                console.log(req);
+            });
+
+            $.doPost({
+                url: "https://restapi.amap.com/v3/weather/weatherInfo?key=d73ae61333a52dae89576ec05d4fb33e&city=310000",
+                dataType:"jsonp",
+                success: function (req) {
+                    console.log(req);//可以写success 回调函数，也可用 then 
+                }
+            });
+
+            
+            $.doRequest({
+                url: "https://restapi.amap.com/v3/weather/weatherInfo?output=json",
+                type:"get",
+                data:{
+                    key:"d73ae61333a52dae89576ec05d4fb33e",
+                    city:"110101"
+                },
+                dataType:"jsonp"
+            }).then(function(req){
+                console.log(req);
+            });
+        });
+    </script>
+</body>
+
+</html>
